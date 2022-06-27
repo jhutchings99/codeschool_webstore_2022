@@ -53,6 +53,11 @@ var app = new Vue({
         const data = await response.json();
         this.products = data;
     },
-    methods: {
+    computed: {
+        computedTotal: function () {
+            this.cart.forEach(item => {
+                this.cartTotal += item.price;
+            });
+        }
     }
 });
