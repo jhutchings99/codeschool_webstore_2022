@@ -33,7 +33,7 @@
 }
 
 /* ====================== WEBSTORE PAGE ======================= */
-#webstore-header {
+.webstore-header {
     background-color: rgb(184, 184, 184);
     height: 150px;
     font-size: 80px;
@@ -42,7 +42,7 @@
     align-items: center;
 }
 
-#cart-button {
+.cart-button {
     position: absolute;
     right: 20px;
     padding: 5px 20px;
@@ -52,11 +52,11 @@
     transition: 0.5s;
 }
 
-#cart-button:hover {
+.cart-button:hover {
     box-shadow: 0px 5px 0px black;
 }
 
-#products-container {
+.products-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -114,4 +114,11 @@
 
 .add-cart:hover{
     box-shadow: 0px 5px 0px black;
+}
+
+/* ========================= CART PAGE ============================ */
+.total {
+    position: absolute;
+    left: 20px;
+    font-size: 20px;
 }

@@ -17,12 +17,22 @@
             <button @click="currentPage = 2" id="enter-store">Enter webstore</button>
         </section>
         <section id="page-2" v-show="currentPage == 2">
-            <div id="webstore-header">
+            <div class="webstore-header">
                 <h1>Webstore</h1>
-                <button id="cart-button" @click="currentPage = 3">Cart</button>
+                <button class="cart-button" @click="currentPage = 3">Cart</button>
             </div>
-            <div id="products-container">
+            <div class="products-container">
                 <product v-for="(product, index) in products" v-bind:item="product" v-bind:key="index" v-bind:cart="cart"></product>
+            </div>
+        </section>
+        <section id="page-3" v-show="currentPage == 3">
+            <div class="webstore-header">
+                <h3 class="total">Total: ${{ cartTotal }}</h3>
+                <h1>Cart</h1>
+                <button class="cart-button" @click="currentPage = 2">Webstore</button>
+            </div>
+            <div class="products-container">
+                <cart-product v-for="(product, index) in cart" v-bind:item="product" v-bind:key="index" v-bind:cart="cart"></cart-product>
             </div>
         </section>
     </div>
