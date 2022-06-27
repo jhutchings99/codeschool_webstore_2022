@@ -4,6 +4,7 @@ var app = new Vue({
     el: "#app",
     data: {
         products: [],
+        currentPage: 1,
     },
     created: async function () {
         const response = await fetch(API_URL + "/products")

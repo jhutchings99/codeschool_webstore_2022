@@ -5,16 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
     <title>Webstore</title>
 </head>
 <body>
     <div id="app">
-        <div v-for="product in products">
-            <img :src="product.image" style="max-width: 400px">
-            <h1>{{ product.title }}</h1>
-            {{ product.description }}
-            <i>{{ product.price }}</i>
-        </div>
+        <section id="page-1" v-show="currentPage == 1">
+            <h1 id="welcome-text">Welcome to the webstore</h1>
+            <button @click="currentPage = 2" id="enter-store">Enter webstore</button>
+        </section>
+        <section id="page-2" v-show="currentPage == 2">
+            <div v-for="product in products">
+                <img :src="product.image" style="max-width: 400px">
+                <h1>{{ product.title }}</h1>
+                {{ product.description }}
+                <i>{{ product.price }}</i>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="app.js"></script>
