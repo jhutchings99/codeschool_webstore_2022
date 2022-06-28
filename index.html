@@ -38,6 +38,27 @@
                 <cart-product v-for="(product, index) in cart" v-bind:item="product" v-bind:key="index" v-bind:cart="cart" v-bind:total="cartTotal"></cart-product>
             </div>
         </section>
+        <section id="page-4" v-show="currentPage == 4">
+            <div class="webstore-header">
+                <button class="store-button" @click="currentPage = 2">Webstore</button>
+                <h1>Login To Shop</h1>
+            </div>
+            <div id="login-container">
+                <div id="login-inputs">
+                    <div id="stuff-wrapper">
+                        <div id="username">
+                            <h1>Username</h1>
+                            <input type="text" placeholder="Enter username" class="login-inputs">
+                        </div>
+                        <div id="password">
+                            <h1>Password</h1>
+                            <input type="text" placeholder="Enter password" class="login-inputs">
+                        </div>
+                    </div>
+                    <button class="login-button">Login</button>
+                </div>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="app.js"></script>

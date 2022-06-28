@@ -46,7 +46,7 @@ var app = new Vue({
     data: {
         products: [],
         cart: [],
-        currentPage: 1,
+        currentPage: 4,
         searchInput: "",
     },
     computed: {
