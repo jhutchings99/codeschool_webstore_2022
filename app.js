@@ -21,7 +21,7 @@ Vue.component("product", {
 })
 
 Vue.component("cart-product", {
-    props: ["item", "cart"],
+    props: ["item", "cart", "total"],
     template:`
     <div class="item">
     <img :src="item.image">
@@ -35,6 +35,7 @@ Vue.component("cart-product", {
     `,
     methods: {
         removeFromCart: function () {
+            console.log(this.item.price)
             this.cart.splice(this.cart.indexOf(this.item), 1)
         }
     }
@@ -46,18 +47,10 @@ var app = new Vue({
         products: [],
         cart: [],
         currentPage: 1,
-        cartTotal: 0.00,
     },
     created: async function () {
         const response = await fetch(API_URL + "/products")
         const data = await response.json();
         this.products = data;
     },
-    computed: {
-        computedTotal: function () {
-            this.cart.forEach(item => {
-                this.cartTotal += item.price;
-            });
-        }
-    }
 });
