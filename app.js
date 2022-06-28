@@ -1,7 +1,7 @@
 const API_URL = "https://fakestoreapi.com";
 
 Vue.component("product", {
-    props: ["item", "cart"],
+    props: ["item", "cart", "loginstatus"],
     template:`
     <div class="item">
         <img :src="item.image">
@@ -15,13 +15,18 @@ Vue.component("product", {
     `,
     methods: {
         addToCart: function () {
-            this.cart.push(this.item);
+            if (this.loginstatus) {
+                this.cart.push(this.item);
+                alert(`Successfully added ${this.item.title} to cart`)
+            } else {
+                alert("Not logged in")
+            }
         }
     }
 })
 
 Vue.component("cart-product", {
-    props: ["item", "cart", "total"],
+    props: ["item", "cart"],
     template:`
     <div class="item">
     <img :src="item.image">
@@ -46,8 +51,34 @@ var app = new Vue({
     data: {
         products: [],
         cart: [],
-        currentPage: 4,
+        currentPage: 1,
         searchInput: "",
+        loggedIn: false,
+        usernameInput: "",
+        passwordInput: "",
+    },
+    methods: {
+        login: function () {
+            if (this.loggedIn){
+                alert("Already logged in")
+                this.currentPage = 2;
+            } 
+            else if (this.usernameInput && this.passwordInput) {
+                this.loggedIn = true;
+                alert("Successfully logged in");
+                this.currentPage = 2;
+            } else {
+                alert("Error logging in: Must enter a username and password");
+            }
+        },
+        logout: function () {
+            if (!this.loggedIn) {
+                alert("Already logged out")
+            } else {
+                loggedIn = false;
+                alert("Logged out")
+            }
+        },
     },
     computed: {
         filteredItems: function () {

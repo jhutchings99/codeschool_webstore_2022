@@ -14,19 +14,20 @@
     <div id="app">
         <section id="page-1" v-show="currentPage == 1">
             <h1 id="welcome-text">Welcome to the webstore</h1>
-            <button @click="currentPage = 2" id="enter-store">Enter webstore</button>
+            <button @click="currentPage = 4" id="enter-store">Enter webstore</button>
         </section>
         <section id="page-2" v-show="currentPage == 2">
             <div class="webstore-header">
                 <input type="text" placeholder="Search" v-model="searchInput" class="search-bar">
                 <h1>Webstore</h1>
                 <button class="cart-button" @click="currentPage = 3">Cart</button>
+                <button class="stuff-button" @click="currentPage = 4">Login</button>
             </div>
             <div class="products-container" v-show="!searchInput">
-                <product v-for="(product, index) in products" v-bind:item="product" v-bind:key="index" v-bind:cart="cart"></product>
+                <product v-for="(product, index) in products" v-bind:item="product" v-bind:key="index" v-bind:cart="cart" v-bind:loginstatus="loggedIn"></product>
             </div>
             <div class="products-container" v-show="searchInput">
-                <product v-for="(product, index) in filteredItems" v-bind:item="product" v-bind:key="index" v-bind:cart="cart"></product>
+                <product v-for="(product, index) in filteredItems" v-bind:item="product" v-bind:key="index" v-bind:cart="cart" v-bind:loginstatus="loggedIn"></product>
             </div>
         </section>
         <section id="page-3" v-show="currentPage == 3">
@@ -35,7 +36,7 @@
                 <button class="cart-button" @click="currentPage = 2">Webstore</button>
             </div>
             <div class="products-container">
-                <cart-product v-for="(product, index) in cart" v-bind:item="product" v-bind:key="index" v-bind:cart="cart" v-bind:total="cartTotal"></cart-product>
+                <cart-product v-for="(product, index) in cart" v-bind:item="product" v-bind:key="index" v-bind:cart="cart"></cart-product>
             </div>
         </section>
         <section id="page-4" v-show="currentPage == 4">
@@ -48,14 +49,15 @@
                     <div id="stuff-wrapper">
                         <div id="username">
                             <h1>Username</h1>
-                            <input type="text" placeholder="Enter username" class="login-inputs">
+                            <input type="text" placeholder="Enter username" class="login-inputs" v-model="usernameInput">
                         </div>
                         <div id="password">
                             <h1>Password</h1>
-                            <input type="text" placeholder="Enter password" class="login-inputs">
+                            <input type="text" placeholder="Enter password" class="login-inputs" v-model="passwordInput">
                         </div>
                     </div>
-                    <button class="login-button">Login</button>
+                    <button class="login-button" @click="login()">Login</button>
+                    <button class="login-button" @click="logout()">Logout</button>
                 </div>
             </div>
         </section>
