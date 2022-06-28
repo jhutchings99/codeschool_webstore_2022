@@ -47,6 +47,26 @@ var app = new Vue({
         products: [],
         cart: [],
         currentPage: 1,
+        searchInput: "",
+    },
+    computed: {
+        filteredItems: function () {
+            var productsCopy = [...this.products];
+            var searchString = this.searchInput;
+
+            searchString = searchString.trim().toLowerCase();
+            productsCopy = productsCopy.filter((product) => {
+                // filter by title
+                if (product.title.toLowerCase().indexOf(searchString) != -1) {
+                    return product
+                }
+                // filter by description
+                // if (product.description.toLowerCase().indexOf(searchString) != -1) {
+                //     return product
+                // }
+            })
+            return productsCopy;
+        }
     },
     created: async function () {
         const response = await fetch(API_URL + "/products")

@@ -18,11 +18,15 @@
         </section>
         <section id="page-2" v-show="currentPage == 2">
             <div class="webstore-header">
+                <input type="text" placeholder="Search" v-model="searchInput" class="search-bar">
                 <h1>Webstore</h1>
                 <button class="cart-button" @click="currentPage = 3">Cart</button>
             </div>
-            <div class="products-container">
+            <div class="products-container" v-show="!searchInput">
                 <product v-for="(product, index) in products" v-bind:item="product" v-bind:key="index" v-bind:cart="cart"></product>
+            </div>
+            <div class="products-container" v-show="searchInput">
+                <product v-for="(product, index) in filteredItems" v-bind:item="product" v-bind:key="index" v-bind:cart="cart"></product>
             </div>
         </section>
         <section id="page-3" v-show="currentPage == 3">
